@@ -1,0 +1,1 @@
+# A bot for playing offensive card games

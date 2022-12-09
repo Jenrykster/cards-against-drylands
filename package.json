@@ -1,0 +1,9 @@
+{
+  "name": "cards-against-drylands",
+  "version": "0.0.1",
+  "description": "Discord bot to play offensive card games",
+  "main": "app.js",
+  "repository": "git@github.com:Jenrykster/cards-against-drylands.git",
+  "author": "Jenryk <joaoenrique.san@gmail.com>",
+  "license": "MIT"
+}
