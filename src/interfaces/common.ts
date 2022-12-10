@@ -3,6 +3,7 @@ import {
   Awaitable,
   CacheType,
   ChatInputCommandInteraction,
+  ClientEvents,
   CommandInteraction,
   SlashCommandBuilder,
 } from "discord.js";
@@ -16,6 +17,12 @@ export interface IBotCommand {
   handler: CommandHandler;
 }
 
-export interface BotInteraction extends CommandInteraction<CacheType> {
+export interface IBotInteraction extends CommandInteraction<CacheType> {
   client: DiscordClient<true>;
+}
+
+export interface IBotEvent<T extends keyof ClientEvents> {
+  name: T;
+  once?: boolean;
+  execute: (...args: ClientEvents[T]) => Awaitable<void>;
 }

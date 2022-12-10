@@ -1,6 +1,6 @@
-const BAR = '==========================================';
-const INFO_COLOR_PREFIX = '\x1b[36m';
-const ERROR_COLOR_PREFIX = '\x1b[31m';
+const BAR = "==========================================";
+const INFO_COLOR_PREFIX = "\x1b[36m";
+const ERROR_COLOR_PREFIX = "\x1b[31m";
 
 const info = (...params: any[]) => {
   console.info(`${INFO_COLOR_PREFIX}INFO:`, ...params);
@@ -26,6 +26,7 @@ const error = (...params: any[]) => {
 const logger = {
   info,
   error,
+  BAR,
 };
 
 export default logger;
