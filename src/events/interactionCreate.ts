@@ -29,9 +29,9 @@ const readyEvent: IBotEvent<Events.InteractionCreate> = {
     }
 
     try {
-      logger.info("COMMAND:", {
+      logger.customLog(logger.LOG_COLORS.WHITE, "COMMAND:", {
         name: interaction.commandName,
-        userWhoRequested: interaction.user.username,
+        userWhoRequested: interaction.user.tag,
       });
       await command.handler(interaction);
     } catch (error) {

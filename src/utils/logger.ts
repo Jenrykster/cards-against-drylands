@@ -4,6 +4,7 @@ enum LOG_COLORS {
   BLUE = "\x1b[36m",
   RED = "\x1b[31m",
   YELLOW = "\x1b[33m",
+  WHITE = "\x1b[37m",
 }
 const customLog = (color: LOG_COLORS, ...params: any) => {
   console.log(color, ...params);
