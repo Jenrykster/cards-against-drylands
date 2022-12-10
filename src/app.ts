@@ -1,3 +1,11 @@
-import config from '@utils/config'
+import { Client, Events, GatewayIntentBits } from 'discord.js'
+import { BOT_TOKEN } from '@utils/config'
+import logger from '@utils/logger'
 
-console.log(config.BOT_TOKEN)
+const client = new Client({ intents: [GatewayIntentBits.Guilds] })
+
+client.once(Events.ClientReady, clientInfo => {
+  logger.info(`Logged in as ${clientInfo.user.tag}`)
+})
+
+client.login(BOT_TOKEN)

@@ -9,4 +9,4 @@ const ENV_SCHEMA = {
 
 const config = Object.assign({}, ENV_SCHEMA, process.env);
 
-export default config
+export const { BOT_TOKEN } = config
