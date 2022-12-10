@@ -19,6 +19,7 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
-    "start": "ts-node src/app.ts"
+    "start": "ts-node src/app.ts",
+    "deploy:commands": "ts-node src/scripts/deploy-commands.ts"
   }
 }
