@@ -93,6 +93,18 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "paths": {
+      "@commands/*": [
+        "commands/*"
+      ],
+      "@interfaces/*": [
+        "interfaces/*"
+      ],
+      "@handlers/*": [
+        "handlers/*"
+      ],
+      "@client/*": [
+        "client/*"
+      ],
       "@utils/*": [
         "utils/*"
       ]
