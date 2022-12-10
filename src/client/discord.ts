@@ -1,3 +1,4 @@
+import { Loader } from "@decorators/logger";
 import { IBotCommand, IBotEvent } from "@interfaces/common";
 import logger from "@utils/logger";
 import { Client, ClientOptions, Collection } from "discord.js";
@@ -9,9 +10,15 @@ export class DiscordClient<
 > extends Client<Ready> {
   public commands: Collection<string, IBotCommand>;
 
-  private loadCommands() {
-    logger.info("\n", logger.BAR, "\nLOADING COMMANDS");
+  constructor(options: ClientOptions) {
+    super(options);
+    this.commands = new Collection();
+    this.loadCommands();
+    this.loadEvents();
+  }
 
+  @Loader("COMMANDS")
+  private loadCommands() {
     const commandsPath = path.join(__dirname, "../commands");
     const commandFiles = readdirSync(commandsPath).filter((file) =>
       file.endsWith(".ts")
@@ -30,12 +37,10 @@ export class DiscordClient<
         );
       }
     }
-    logger.info("\nFINISHED LOADING COMMANDS\n", logger.BAR, "\n");
   }
 
+  @Loader("EVENTS")
   private loadEvents() {
-    logger.info("\n", logger.BAR, "\nLOADING EVENTS");
-
     const eventsPath = path.join(__dirname, "../events");
     const eventFiles = readdirSync(eventsPath).filter((file) =>
       file.endsWith(".ts")
@@ -57,14 +62,5 @@ export class DiscordClient<
         logger.error(`The event [${file}] is not configured correctly.`);
       }
     }
-
-    logger.info("\nFINISHED LOADING EVENTS\n", logger.BAR, "\n");
-  }
-
-  constructor(options: ClientOptions) {
-    super(options);
-    this.commands = new Collection();
-    this.loadCommands();
-    this.loadEvents();
   }
 }

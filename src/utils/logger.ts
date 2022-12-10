@@ -1,16 +1,23 @@
 const BAR = "==========================================";
-const INFO_COLOR_PREFIX = "\x1b[36m";
-const ERROR_COLOR_PREFIX = "\x1b[31m";
+
+enum LOG_COLORS {
+  BLUE = "\x1b[36m",
+  RED = "\x1b[31m",
+  YELLOW = "\x1b[33m",
+}
+const customLog = (color: LOG_COLORS, ...params: any) => {
+  console.log(color, ...params);
+};
 
 const info = (...params: any[]) => {
-  console.info(`${INFO_COLOR_PREFIX}INFO:`, ...params);
+  customLog(LOG_COLORS.BLUE, `INFO:`, ...params);
 };
 
 const error = (...params: any[]) => {
   if (params.length <= 2 && params[0] instanceof Error) {
     const [errorData, config] = params;
 
-    console.log(ERROR_COLOR_PREFIX);
+    console.log(LOG_COLORS.RED);
     console.log(BAR);
     console.log(`ERROR: ${errorData.name}`);
     console.log(`DESCRIPTION: ${errorData.message}`);
@@ -19,14 +26,16 @@ const error = (...params: any[]) => {
     }
     console.log(BAR);
   } else {
-    console.error(`${ERROR_COLOR_PREFIX}ERROR: `, ...params);
+    console.error(LOG_COLORS.RED, `ERROR: `, ...params);
   }
 };
 
 const logger = {
   info,
   error,
+  customLog,
   BAR,
+  LOG_COLORS,
 };
 
 export default logger;
